@@ -7,6 +7,8 @@ import {
  
   import { Component } from 'react';
   import Login from "../pages/Login"
+  import PaymentRequest from '../pages/payment_request';
+  import Dashboard from '../pages/dashboard';
 
   function App() {
       return(
@@ -15,8 +17,9 @@ import {
        
         <Switch>
         
-        <Route exact path="/" component={Login} />
+        <Route exact path="/dashboard" component={Dashboard} />
         <Route path="/login" component={Login} />
+        <Route path="/payment_request" component={PaymentRequest} />
     
       </Switch>
       

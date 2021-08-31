@@ -33,7 +33,7 @@ import {
               fontSize={{ base: '3xl', sm: '4xl', md: '5xl', lg: '6xl' }}>
               Payment Monitoring
             </Heading>
-            <Box>
+            <Box >
             Lorem Ipsum is simply dummy text of the printing and typesetting industry.  
             </Box>
             
