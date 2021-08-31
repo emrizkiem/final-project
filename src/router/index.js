@@ -20,6 +20,7 @@ import {
         <Route exact path="/dashboard" component={Dashboard} />
         <Route path="/login" component={Login} />
         <Route path="/payment_request" component={PaymentRequest} />
+        <Route path="/" component={PaymentRequest} />
     
       </Switch>
       
