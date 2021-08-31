@@ -42,10 +42,10 @@ function BasicUsage() {
             </ModalBody>
   
             <ModalFooter>
-              <Button fontFamily="ub" colorScheme="gray.500" variant="outline" mr={3} onClick={()=>handleclosemodal()}> 
+              <Button fontWeight="400" color=" #666666" variant="outline" borderRadius="4px" mr={3} onClick={()=>handleclosemodal()}> 
                 Tutup
               </Button>
-              <Button  colorScheme="red" variant="solid">Submit Payment Request</Button>
+              <Button  bg="brand.red" variant="solid" color="white" borderRadius="4px">Submit Payment Request</Button>
             </ModalFooter>
           </ModalContent>
         </Modal>
