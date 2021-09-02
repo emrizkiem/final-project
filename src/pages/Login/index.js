@@ -36,7 +36,6 @@ import {
             <Box>
             Lorem Ipsum is simply dummy text of the printing and typesetting industry.  
             </Box>
-            
           </Stack>
           <Stack
             bg={'gray.50'}
@@ -58,7 +57,7 @@ import {
                 </Text>
               </Heading>
               <Text color={'gray.500'} fontSize={{ base: 'sm', sm: 'md' }}>
-               Silahkan masuk dengan akun yang sudah terdaftar!!
+                Silahkan masuk dengan akun yang sudah terdaftar!!
               </Text>
             </Stack>
             <Box as={'form'} mt={10}>
@@ -81,7 +80,6 @@ import {
                     color: 'gray.500',
                   }}
                 />
-               
               </Stack>
               <Button
                 fontFamily={'heading'}

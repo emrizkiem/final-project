@@ -7,6 +7,7 @@ import {
  
   import { Component } from 'react';
   import Login from "../pages/Login"
+  import ListPayment from "../pages/ListPayment"
 
   function App() {
       return(
@@ -15,8 +16,12 @@ import {
        
         <Switch>
         
+        
+        <Route exact path="/" component={ListPayment} />
+        <Route path="/ListPayment" component={ListPayment} />
         <Route exact path="/" component={Login} />
-        <Route path="/login" component={Login} />
+        <Route path="/Login" component={Login}/>
+
     
       </Switch>
       
