@@ -1,6 +1,5 @@
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-import Login from '../pages/login';
 import PaymentRequest from '../pages/payment_request';
 import Dashboard from '../pages/dashboard';
 
@@ -9,9 +8,8 @@ function App() {
     <BrowserRouter>
       <Switch>
         <Route exact path="/dashboard" component={Dashboard} />
-        <Route path="/login" component={Login} />
+        <Route path="/" component={Dashboard} />
         <Route path="/payment_request" component={PaymentRequest} />
-        <Route path="/" component={Login} />
       </Switch>
     </BrowserRouter>
   );
