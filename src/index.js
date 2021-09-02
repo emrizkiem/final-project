@@ -4,6 +4,7 @@ import { ChakraProvider } from "@chakra-ui/react"
 import {App} from './router';
 import theme from "./costumThemes"
 import "./styles/index.scss"
+import 'react-calendar/dist/Calendar.css';
 
 
 import reportWebVitals from './reportWebVitals';
