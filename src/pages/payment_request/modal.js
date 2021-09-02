@@ -13,12 +13,17 @@ import {
   FormControl,
   FormLabel,
   Input,
-  Textarea
+  Textarea,
 } from "@chakra-ui/react";
 import { useState } from "react";
+import { InputGlobal } from "components";
+import Calendar from "react-calendar";
 
 function BasicUsage() {
   const [isOpen, setIsOpen] = useState(true);
+  const [value, onChange] = useState(new Date());
+  const [showDatePicker, setShowDatePicker] = useState(false)
+
   function handleopenmodal() {
     setIsOpen(true);
   }
@@ -26,6 +31,8 @@ function BasicUsage() {
   function handleclosemodal() {
     setIsOpen(false);
   }
+
+
 
   return (
     <>
@@ -40,52 +47,62 @@ function BasicUsage() {
           <ModalBody>
             <Flex>
               <Box flex="1" paddingRight="1.5em">
-                <FormControl id="email">
-                  <FormLabel>Email address</FormLabel>
-                  <Input type="text"  placeholder="Masukkan nama lengkap Anda"/>
-                </FormControl>
-                <FormControl id="email" pt="1em">
-                  <FormLabel>Email address</FormLabel>
-                  <Input type="text"  placeholder="Masukkan nama lengkap Anda"/>
-                </FormControl>
+                <InputGlobal
+                  label="Diminta Oleh"
+                  placeholder="Masukkan nama lengkap Anda"
+                />
+                <Box mt="1.5em" >
+                <InputGlobal onFocus={()=>setShowDatePicker(true)} label="Tangggal pembayaran aktual" placeholder="dd/mm/yyyy"/>  
+                  {
+                    showDatePicker && (
+                      <Box position="absolute" bg="white" zIndex="10">
+                        <Calendar onChange={onChange} value={value} />
+                      </Box>
+                    )
+                    
+
+                  }
+                  
+                  
+                </Box>
               </Box>
               <Box flex="1" paddingLeft="1.5em">
-              <FormControl id="email">
-                  <FormLabel>Email address</FormLabel>
-                  <Input type="text"  placeholder="Masukkan nama lengkap Anda"/>
-                </FormControl>
-                <FormControl id="email" pt="1em">
-                  <FormLabel>Email address</FormLabel>
-                  <Input type="text"  placeholder="Masukkan nama lengkap Anda"/>
-                </FormControl>
+                <InputGlobal
+                  label="Keperluan pembayaran"
+                  placeholder="Masukkan kebutuhan pembayaran Anda"
+                />
+                <Box>
+                  <InputGlobal label="Jumlah pembayaran" placeholder="Rp" />
+                </Box>
               </Box>
             </Flex>
 
             <Box my="1em">
-                <Box>Siapa Rada?</Box>
-                <Textarea placeholder="Rada cantikk" mt="0.5em"/>
+              <Box>TERBILANG</Box>
+              <Textarea mt="0.5em" />
             </Box>
-
 
             <Flex my="1en">
               <Box flex="1" paddingRight="1.5em">
-                <FormControl id="email">
-                  <FormLabel>Email address</FormLabel>
-                  <Input type="text"  placeholder="Masukkan nama lengkap Anda"/>
-                </FormControl>
+              <InputGlobal
+                  label="NAMA PENERIMA"
+                  placeholder="Masukkan nama penerima"
+                />
                 
               </Box>
               <Box flex="1" paddingLeft="1.5em">
-              <FormControl id="email">
-                  <FormLabel>Email address</FormLabel>
-                  <Input type="text"  placeholder="Masukkan nama lengkap Anda"/>
+                <FormControl id="email">
+                  <FormLabel>NOMOR REKENING PENERIMA</FormLabel>
+                  <Input
+                    type="text"
+                    placeholder="Masukkan no rekening penerima"
+                  />
                 </FormControl>
-                
               </Box>
             </Flex>
           </ModalBody>
 
-          <Divider  my="1em"/>
+          <Divider my="1em" />
 
           <ModalFooter>
             <Button

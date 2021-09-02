@@ -7,9 +7,8 @@ import  BasicUsage from "./modal"
 function PaymentRequest() {
     return(
         <Box>
-            <BasicUsage>
-                tr,mlkl
-            </BasicUsage>
+            <BasicUsage/>
+           
         </Box>
 
     )
