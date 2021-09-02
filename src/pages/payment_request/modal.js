@@ -16,13 +16,21 @@ import {
   Textarea,
 } from "@chakra-ui/react";
 import { useState } from "react";
+import moment from "moment";
 import { InputGlobal } from "components";
 import Calendar from "react-calendar";
 
 function BasicUsage() {
-  const [isOpen, setIsOpen] = useState(true);
-  const [value, onChange] = useState(new Date());
-  const [showDatePicker, setShowDatePicker] = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
+  const [showDatePicker, setShowDatePicker] = useState(false);
+
+  const [dateValue, setDateValue] = useState(null);
+  const [requestBy, setRequestBy] = useState("");
+  const [invoiceTitle, setInvoiceTitle] = useState("");
+  const [price, setPrice] = useState("");
+  const [priceInText, setPriceInText] = useState("");
+  const [receipent, setReceipent] = useState("");
+  const [receipentBank, setReceipentBank] = useState("");
 
   function handleopenmodal() {
     setIsOpen(true);
@@ -32,7 +40,27 @@ function BasicUsage() {
     setIsOpen(false);
   }
 
+  function handleDatePicker(e) {
+    const date = new Date(e);
+    const formatDate =
+      date.getDate() + "-" + date.getMonth() + "-" + date.getFullYear();
+    setDateValue(formatDate);
+    setShowDatePicker(false);
+  }
 
+  function onSubmit(){ // fungsi untuk POST ke backend nanti 
+    let bodyRequest = {
+      nama :requestBy,
+      tanggal : dateValue,
+      nama_invoice : invoiceTitle,
+      harga : price,
+      harga_dalam_teks : priceInText,
+      nama_penerima : receipent,
+      bank_penerima : receipentBank
+    }
+    // lihat di browser console - untuk mengetahui hasil json body request
+    console.log(bodyRequest)
+  }
 
   return (
     <>
@@ -47,57 +75,76 @@ function BasicUsage() {
           <ModalBody>
             <Flex>
               <Box flex="1" paddingRight="1.5em">
-                <InputGlobal
-                  label="Diminta Oleh"
-                  placeholder="Masukkan nama lengkap Anda"
-                />
-                <Box mt="1.5em" >
-                <InputGlobal onFocus={()=>setShowDatePicker(true)} label="Tangggal pembayaran aktual" placeholder="dd/mm/yyyy"/>  
-                  {
-                    showDatePicker && (
-                      <Box position="absolute" bg="white" zIndex="10">
-                        <Calendar onChange={onChange} value={value} />
-                      </Box>
-                    )
-                    
-
-                  }
-                  
-                  
+                <Box>
+                  <InputGlobal
+                    label="Diminta Oleh"
+                    onChange={(value) => setRequestBy(value)}
+                    value={requestBy}
+                    placeholder="Masukkan nama lengkap Anda"
+                  />
+                </Box>
+                <Box mt="1.5em">
+                  <InputGlobal
+                    value={dateValue}
+                    onFocus={() => setShowDatePicker(true)}
+                    label="Tangggal pembayaran aktual"
+                    placeholder="dd/mm/yyyy"
+                  />
+                  {showDatePicker && (
+                    <Box position="absolute" bg="white" zIndex="10">
+                      <Calendar
+                        formatLongDate={(locale, date) =>
+                          moment(date, "dd MMM YYYY")
+                        }
+                        onChange={(e) => handleDatePicker(e)}
+                      />
+                    </Box>
+                  )}
                 </Box>
               </Box>
               <Box flex="1" paddingLeft="1.5em">
                 <InputGlobal
                   label="Keperluan pembayaran"
                   placeholder="Masukkan kebutuhan pembayaran Anda"
+                  onChange={(value) => setInvoiceTitle(value)}
+                  value={invoiceTitle}
                 />
                 <Box>
-                  <InputGlobal label="Jumlah pembayaran" placeholder="Rp" />
+                  <InputGlobal
+                    label="Jumlah pembayaran"
+                    placeholder="Rp"
+                    onChange={(value) => setPrice(value)}
+                    value={price}
+                  />
                 </Box>
               </Box>
             </Flex>
 
             <Box my="1em">
               <Box>TERBILANG</Box>
-              <Textarea mt="0.5em" />
+              <Textarea
+                mt="0.5ems"
+                value={priceInText}
+                onChange={(e) => setPriceInText(e.target.value)}
+              />
             </Box>
 
             <Flex my="1en">
               <Box flex="1" paddingRight="1.5em">
-              <InputGlobal
+                <InputGlobal
                   label="NAMA PENERIMA"
                   placeholder="Masukkan nama penerima"
+                  onChange={(value) => setReceipent(value)}
+                  value={receipent}
                 />
-                
               </Box>
               <Box flex="1" paddingLeft="1.5em">
-                <FormControl id="email">
-                  <FormLabel>NOMOR REKENING PENERIMA</FormLabel>
-                  <Input
-                    type="text"
-                    placeholder="Masukkan no rekening penerima"
-                  />
-                </FormControl>
+                <InputGlobal
+                  label="NOMOR REKENING PENERIMA"
+                  placeholder="Masukkan no rekening penerima"
+                  onChange={(value) => setReceipentBank(value)}
+                  value={receipentBank}
+                />
               </Box>
             </Flex>
           </ModalBody>
@@ -120,6 +167,8 @@ function BasicUsage() {
               variant="solid"
               color="white"
               borderRadius="4px"
+
+              onClick={()=>onSubmit()}
             >
               Submit Payment Request
             </Button>
