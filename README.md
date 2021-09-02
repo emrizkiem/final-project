@@ -1,25 +1,31 @@
 # Cara berkontribusi :
 
-### Branching 
-##### ``` main ```
-branch utama hanya untuk production 
-##### ``` develop ```
+### Branching
+
+##### `main`
+
+branch utama hanya untuk production
+
+##### `develop`
+
 branch untuk development
 
 Note :
-- buat branch baru dengan format ```feature/nama_contributor``` atau ```bugfix/nama_contributor```
-- pastikan fitur baru selalu chekout dari branch ```develop```
-- pastikan melakukan pull dari branch ```develop``` ketika ingin merge branch baru ke ```develop``` agar tidak konflik
-- pastikan melakukan pull request sebelum merge branch baru ke ```develop```
+
+- buat branch baru dengan format `feature/nama_fitur` atau `bugfix/nama_fitur`
+- pastikan fitur baru selalu chekout dari branch `develop`
+- pastikan melakukan pull dari branch `develop` ketika ingin merge branch baru ke `develop` agar tidak konflik
+- pastikan melakukan pull request sebelum merge branch baru ke `develop`
 
 ### Pesan Commit
-Silahkan memakai format pesan berikut agar mudah dipahami oleh kontributor yang lain 
+
+Silahkan memakai format pesan berikut agar mudah dipahami oleh kontributor yang lain
 
 Format: `<type>: <name_kontributor> - <subject>`
 
 ## Example
 
-``` 
+```
 feat : Safta Fhatona - add login page
 ```
 
@@ -31,4 +37,3 @@ Keterangan type :
 - `style`: (rules code ESLint dan Prettier)
 - `refactor`: (refactoring )
 - `test`: (unit test dan integration test)
-
