@@ -14,6 +14,7 @@ import {
   FormLabel,
   Input,
   Textarea,
+  Image
 } from "@chakra-ui/react";
 import { useState } from "react";
 import moment from "moment";
@@ -77,17 +78,17 @@ function BasicUsage() {
               <Box flex="1" paddingRight="1.5em">
                 <Box>
                   <InputGlobal
-                    label="Diminta Oleh"
+                    label="DIMINTA OLEH"
                     onChange={(value) => setRequestBy(value)}
                     value={requestBy}
                     placeholder="Masukkan nama lengkap Anda"
                   />
                 </Box>
                 <Box mt="1.5em">
-                  <InputGlobal
+                  <InputGlobal icon={true}
                     value={dateValue}
                     onFocus={() => setShowDatePicker(true)}
-                    label="Tangggal pembayaran aktual"
+                    label="TANGGAL PEMBAYARAN AKTUAL"
                     placeholder="dd/mm/yyyy"
                   />
                   {showDatePicker && (
@@ -97,21 +98,22 @@ function BasicUsage() {
                           moment(date, "dd MMM YYYY")
                         }
                         onChange={(e) => handleDatePicker(e)}
-                      />
+                      /> <Image position="absolute" src={"./calendar.png"} alt="calendar"  margin="2" height="5" width="5" />
+                  
                     </Box>
                   )}
                 </Box>
               </Box>
               <Box flex="1" paddingLeft="1.5em">
                 <InputGlobal
-                  label="Keperluan pembayaran"
+                  label="KEPERLUAN PEMBAYARAN"
                   placeholder="Masukkan kebutuhan pembayaran Anda"
                   onChange={(value) => setInvoiceTitle(value)}
                   value={invoiceTitle}
                 />
-                <Box>
+                <Box paddingTop="0.5em">
                   <InputGlobal
-                    label="Jumlah pembayaran"
+                    label=" JUMLAH PEMBAYARAN"
                     placeholder="Rp"
                     onChange={(value) => setPrice(value)}
                     value={price}
