@@ -8,7 +8,7 @@ function App() {
   return (
     <BrowserRouter>
       <Switch>
-        <Route path="/" component={Dashboard} />
+        <Route path="/" component={PaymentRequest} />
         <Route path="/login" component={Login} />
         <Route exact path="/dashboard" component={Dashboard} />
         <Route path="/payment_request" component={PaymentRequest} />

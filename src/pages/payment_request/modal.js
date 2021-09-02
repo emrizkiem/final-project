@@ -13,15 +13,20 @@ import {
   FormControl,
   FormLabel,
   Input,
-  Textarea
+  Textarea,
+  Text,
+  Image,
 } from "@chakra-ui/react";
 import { useState } from "react";
+
+
 
 function BasicUsage() {
   const [isOpen, setIsOpen] = useState(true);
   function handleopenmodal() {
     setIsOpen(true);
   }
+  
 
   function handleclosemodal() {
     setIsOpen(false);
@@ -34,51 +39,70 @@ function BasicUsage() {
       <Modal isOpen={isOpen} onClose={() => handleclosemodal()} size="2xl">
         <ModalOverlay opacity={0.8} />
         <ModalContent borderRadius="0">
-          <ModalHeader>New Payment Request</ModalHeader>
-          <Divider />
+          <ModalHeader ><Text fontSize="lg" color="#66686A">New Payment Request</Text>
+          </ModalHeader>
+          <Divider orientation="horizontal" />
           <ModalCloseButton />
-          <ModalBody>
-            <Flex>
-              <Box flex="1" paddingRight="1.5em">
-                <FormControl id="email">
-                  <FormLabel>Email address</FormLabel>
-                  <Input type="text"  placeholder="Masukkan nama lengkap Anda"/>
+          <ModalBody >
+            <Flex >
+              <Box flex="1" paddingRight="1.5em" pt="4" >
+                
+                <FormControl id="minol" >
+                  <FormLabel>
+                    <Text fontSize="xs" color="#66686A">DIMINTA OLEH</Text>
+                    </FormLabel>
+                  <Input type="text"  placeholder="Masukkan nama lengkap Anda" fontSize="xs"/>
                 </FormControl>
-                <FormControl id="email" pt="1em">
-                  <FormLabel>Email address</FormLabel>
-                  <Input type="text"  placeholder="Masukkan nama lengkap Anda"/>
+                <FormControl id="tglpem" pt="1em">
+                  <FormLabel>
+                  <Text fontSize="xs" color="#66686A" >TANGGAL PEMBAYARAN AKTUAL</Text>
+                  </FormLabel>
+                  <Flex justifyContent="flex-end" alignItems="center" position="relative">
+                   <Input type="text"  placeholder="dd/mm/yyyy" fontSize="xs" color="black"/>
+                  <Image position="absolute" src={"./calendar.png"} alt="calendar"  margin="2" height="5" width="5" />
+                  </Flex>
                 </FormControl>
               </Box>
-              <Box flex="1" paddingLeft="1.5em">
-              <FormControl id="email">
-                  <FormLabel>Email address</FormLabel>
-                  <Input type="text"  placeholder="Masukkan nama lengkap Anda"/>
+              <Box flex="1" paddingLeft="1.5em" pt="4">
+              <FormControl id="kepbar">
+                  <FormLabel>
+                  <Text fontSize="xs" color="#66686A">KEPERLUAN PEMBAYARAN</Text>
+                  </FormLabel>
+                  <Input type="text"  placeholder="Masukkan kebutuhan pembayaran Anda" fontSize="xs"/>
                 </FormControl>
-                <FormControl id="email" pt="1em">
-                  <FormLabel>Email address</FormLabel>
-                  <Input type="text"  placeholder="Masukkan nama lengkap Anda"/>
+                <FormControl id="jumpem" pt="1em">
+                  <FormLabel>
+                  <Text fontSize="xs" color="#66686A"> JUMLAH PEMBAYARAN</Text>
+                 </FormLabel>
+                  <Input type="text"  placeholder="Rp." fontSize="xs"/>
                 </FormControl>
               </Box>
             </Flex>
 
             <Box my="1em">
-                <Box>Siapa Rada?</Box>
-                <Textarea placeholder="Rada cantikk" mt="0.5em"/>
+                <Box><Text fontSize="xs" color="#66686A">TERBILANG</Text></Box>
+                <Textarea placeholder="" fontSize="xs" mt="0.5em"/>
             </Box>
 
 
             <Flex my="1en">
               <Box flex="1" paddingRight="1.5em">
-                <FormControl id="email">
-                  <FormLabel>Email address</FormLabel>
-                  <Input type="text"  placeholder="Masukkan nama lengkap Anda"/>
+                <FormControl id="penerima">
+                  <FormLabel>
+                  <Text fontSize="xs" color="#66686A">NAMA PENERIMA</Text>
+                  </FormLabel>
+                  <Input type="text"  placeholder="Masukkan nama penerima" fontSize="xs"/>
                 </FormControl>
                 
               </Box>
               <Box flex="1" paddingLeft="1.5em">
-              <FormControl id="email">
-                  <FormLabel>Email address</FormLabel>
-                  <Input type="text"  placeholder="Masukkan nama lengkap Anda"/>
+              <FormControl id="rek">
+                  <FormLabel> 
+                  <Text fontSize="xs" color="#66686A"> NO REKENING PENERIMA</Text>
+                 </FormLabel>
+                  <Box >
+                  <Input type="text" placeholder="Masukkan no rekening penerima" fontSize="xs" />
+                  </Box>
                 </FormControl>
                 
               </Box>
@@ -96,7 +120,7 @@ function BasicUsage() {
               mr={3}
               onClick={() => handleclosemodal()}
             >
-              Tutup
+            <Text fontSize="sm"> Tutup</Text>
             </Button>
             <Button
               bg="brand.red"
@@ -104,7 +128,7 @@ function BasicUsage() {
               color="white"
               borderRadius="4px"
             >
-              Submit Payment Request
+             <Text fontSize="sm"> Submit Payment Request</Text> 
             </Button>
           </ModalFooter>
         </ModalContent>
