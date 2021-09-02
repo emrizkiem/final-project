@@ -1,12 +1,11 @@
 import {
     BrowserRouter,
     Route,
-    Link,
     Switch
   } from 'react-router-dom'
- 
-  import { Component } from 'react';
+  import Dashboard from "../pages/Dashboard"
   import Login from "../pages/Login"
+  
 
   function App() {
       return(
@@ -17,6 +16,7 @@ import {
         
         <Route exact path="/" component={Login} />
         <Route path="/login" component={Login} />
+        <Route path="/dashboard" component={Dashboard} />
     
       </Switch>
       

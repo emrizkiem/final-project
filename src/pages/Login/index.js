@@ -1,7 +1,6 @@
 import React from 'react';
 import {
     Box,
-    Flex,
     Stack,
     Heading,
     Text,
@@ -9,10 +8,7 @@ import {
     Input,
     Button,
     SimpleGrid,
-    Avatar,
-    AvatarGroup,
     useBreakpointValue,
-    IconProps,
     Icon,
   } from '@chakra-ui/react';
   
