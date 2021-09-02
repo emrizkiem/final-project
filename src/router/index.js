@@ -1,33 +1,20 @@
-import {
-    BrowserRouter,
-    Route,
-    Link,
-    Switch
-  } from 'react-router-dom'
- 
-  import { Component } from 'react';
-  import Login from "../pages/Login"
-  import PaymentRequest from '../pages/payment_request';
-  import Dashboard from '../pages/dashboard';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-  function App() {
-      return(
-            <BrowserRouter>
+import Login from '../pages/login';
+import PaymentRequest from '../pages/payment_request';
+import Dashboard from '../pages/dashboard';
 
-       
-        <Switch>
-        
+function App() {
+  return (
+    <BrowserRouter>
+      <Switch>
         <Route exact path="/dashboard" component={Dashboard} />
         <Route path="/login" component={Login} />
         <Route path="/payment_request" component={PaymentRequest} />
-        <Route path="/" component={PaymentRequest} />
-    
+        <Route path="/" component={Login} />
       </Switch>
-      
-      </BrowserRouter>
+    </BrowserRouter>
+  );
+}
 
-      )
-
-  }
- 
-  export {App}
+export { App };

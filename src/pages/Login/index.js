@@ -1,131 +1,96 @@
 import React from 'react';
 import {
-    Box,
-    Flex,
-    Stack,
-    Heading,
-    Text,
-    Container,
-    Input,
-    Button,
-    SimpleGrid,
-    Avatar,
-    AvatarGroup,
-    useBreakpointValue,
-    IconProps,
-    Icon,
-  } from '@chakra-ui/react';
-  
+  ChakraProvider,
+  Center,
+  Image,
+  Text,
+  Input,
+  FormControl,
+  FormLabel,
+  FormHelperText,
+  Button,
+  Box,
+  InputRightElement,
+  InputGroup,
+} from '@chakra-ui/react';
+import { ViewOffIcon } from '@chakra-ui/icons';
+import { Link } from 'react-router-dom';
 
-  
-  export default function Login() {
-    return (
-      <Box position={'relative'}>
-        <Container
-          as={SimpleGrid}
-          maxW={'7xl'}
-          columns={{ base: 1, md: 2 }}
-          spacing={{ base: 10, lg: 32 }}
-          py={{ base: 10, sm: 20, lg: 32 }}>
-          <Stack spacing={{ base: 10, md: 20 }}>
-            <Heading
-              lineHeight={1.1}
-              fontSize={{ base: '3xl', sm: '4xl', md: '5xl', lg: '6xl' }}>
-              Payment Monitoring
-            </Heading>
-            <Box >
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry.  
-            </Box>
-            
-          </Stack>
-          <Stack
-            bg={'gray.50'}
-            rounded={'xl'}
-            p={{ base: 4, sm: 6, md: 8 }}
-            spacing={{ base: 8 }}
-            maxW={{ lg: 'lg' }}>
-            <Stack spacing={4}>
-              <Heading
-                color={'gray.800'}
-                lineHeight={1.1}
-                fontSize={{ base: '2xl', sm: '3xl', md: '4xl' }}>
-                Login
-                <Text
-                  as={'span'}
-                  bgGradient="linear(to-r, red.400,pink.400)"
-                  bgClip="text">
-                  !
-                </Text>
-              </Heading>
-              <Text color={'gray.500'} fontSize={{ base: 'sm', sm: 'md' }}>
-               Silahkan masuk dengan akun yang sudah terdaftar!!
-              </Text>
-            </Stack>
-            <Box as={'form'} mt={10}>
-              <Stack spacing={4}>
-                <Input
-                  placeholder="Email"
-                  bg={'gray.100'}
-                  border={0}
-                  color={'gray.500'}
-                  _placeholder={{
-                    color: 'gray.500',
-                  }}
-                />
-                <Input
-                  placeholder="Password"
-                  bg={'gray.100'}
-                  border={0}
-                  color={'gray.500'}
-                  _placeholder={{
-                    color: 'gray.500',
-                  }}
-                />
-               
-              </Stack>
-              <Button
-                fontFamily={'heading'}
-                mt={8}
-                w={'full'}
-                bgGradient="linear(to-r, red.400,pink.400)"
-                color={'white'}
-                _hover={{
-                  bgGradient: 'linear(to-r, red.400,pink.400)',
-                  boxShadow: 'xl',
-                }}>
-                Submit
-              </Button>
-            </Box>
-            form
-          </Stack>
-        </Container>
-        <Blur
-          position={'absolute'}
-          top={-10}
-          left={-10}
-          style={{ filter: 'blur(70px)' }}
+export default function Login() {
+  return (
+    <Center
+      maxW="100%"
+      h="100vh"
+      bgColor="#F2F2F2"
+      flexDirection="column"
+      color="gray"
+      pl="10"
+      pr="10"
+    >
+      <Box maxWidth="400px" width="100%">
+        <Image
+          width="full"
+          src={process.env.PUBLIC_URL + 'assets/images/logo.png'}
+          alt="Logo"
+          mb="10px"
         />
       </Box>
-    );
-  }
-  
-  export const Blur = (props) => {
-    return (
-      <Icon
-        width={useBreakpointValue({ base: '100%', md: '40vw', lg: '30vw' })}
-        zIndex={useBreakpointValue({ base: -1, md: -1, lg: 0 })}
-        height="560px"
-        viewBox="0 0 528 560"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        {...props}>
-        <circle cx="71" cy="61" r="111" fill="#F56565" />
-        <circle cx="244" cy="106" r="139" fill="#ED64A6" />
-        <circle cy="291" r="139" fill="#ED64A6" />
-        <circle cx="80.5" cy="189.5" r="101.5" fill="#ED8936" />
-        <circle cx="196.5" cy="317.5" r="101.5" fill="#ECC94B" />
-        <circle cx="70.5" cy="458.5" r="101.5" fill="#48BB78" />
-        <circle cx="426.5" cy="-0.5" r="101.5" fill="#4299E1" />
-      </Icon>
-    );
-  };
+      <Box
+        bgColor="#fff"
+        padding="30px"
+        maxW="400px"
+        width="100%"
+        borderRadius="10px"
+      >
+        <Text fontSize="32px" fontWeight="700" mt="4" mb="8" color="#333">
+          Login
+        </Text>
+        <Box maxW="600px" w="100%">
+          <FormControl id="email" w="100%" mt="4">
+            <FormLabel textTransform="uppercase" fontWeight="normal">
+              Email/Username
+            </FormLabel>
+            <Input type="email" />
+          </FormControl>
+          <FormControl id="email" w="100%" mt="4">
+            <FormLabel textTransform="uppercase" fontWeight="normal">
+              Password
+            </FormLabel>
+            <InputGroup size="md">
+              <Input type="password" />
+              <InputRightElement width="3rem">
+                <ViewOffIcon />
+              </InputRightElement>
+              <FormHelperText display="none">Wrong Password</FormHelperText>
+            </InputGroup>
+          </FormControl>
+          <Link to="/forgot_password">
+            <Text
+              fontSize="16px"
+              fontWeight="700"
+              textAlign="right"
+              mt="8px"
+              textTransform="uppercase"
+              color="#E51B23"
+            >
+              Forgot Password?
+            </Text>
+          </Link>
+          <Box w="100%" align="center">
+            <Button
+              olorScheme="blue"
+              size="lg"
+              bg="#E51B23"
+              color="white"
+              mt="10"
+              mb="10"
+              width="100%"
+            >
+              Login
+            </Button>
+          </Box>
+        </Box>
+      </Box>
+    </Center>
+  );
+}
