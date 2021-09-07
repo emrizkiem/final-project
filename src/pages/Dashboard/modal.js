@@ -21,10 +21,10 @@ import moment from "moment";
 import { InputGlobal } from "components";
 import Calendar from "react-calendar";
 
-function BasicUsage() {
-  const [isOpen, setIsOpen] = useState(false);
-  const [showDatePicker, setShowDatePicker] = useState(false);
+function BasicUsage(props) {
+  const {onClose,isOpen}=props
 
+  const [showDatePicker, setShowDatePicker] = useState(false);
   const [dateValue, setDateValue] = useState(null);
   const [requestBy, setRequestBy] = useState("");
   const [invoiceTitle, setInvoiceTitle] = useState("");
@@ -33,14 +33,7 @@ function BasicUsage() {
   const [receipent, setReceipent] = useState("");
   const [receipentBank, setReceipentBank] = useState("");
 
-  function handleopenmodal() {
-    setIsOpen(true);
-  }
-
-  function handleclosemodal() {
-    setIsOpen(false);
-  }
-
+ 
   function handleDatePicker(e) {
     const date = new Date(e);
     const formatDate =
@@ -65,9 +58,8 @@ function BasicUsage() {
 
   return (
     <>
-      <Button onClick={() => handleopenmodal()}>Open Modal</Button>
 
-      <Modal isOpen={isOpen} onClose={() => handleclosemodal()} size="2xl">
+      <Modal isOpen={isOpen} onClose={() => onClose()} size="2xl">
         <ModalOverlay opacity={0.8} />
         <ModalContent borderRadius="0">
           <ModalHeader>New Payment Request</ModalHeader>
@@ -160,7 +152,7 @@ function BasicUsage() {
               variant="outline"
               borderRadius="4px"
               mr={3}
-              onClick={() => handleclosemodal()}
+              onClick={() => onClose()}
             >
               Tutup
             </Button>
