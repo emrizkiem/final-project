@@ -7,6 +7,7 @@ import {
  
   import { Component } from 'react';
   import Login from "../pages/Login"
+  import Dashboard from "../pages/Dashboard"
 
   function App() {
       return(
@@ -17,6 +18,8 @@ import {
         
         <Route exact path="/" component={Login} />
         <Route path="/login" component={Login} />
+        <Route exact path="/" component={Dashboard} />
+        <Route path="/dashboard" component={Dashboard} />
     
       </Switch>
       
