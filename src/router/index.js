@@ -4,11 +4,11 @@ import {
     Switch
   } from 'react-router-dom'
   import Dashboard from "../pages/Dashboard"
-  import Login from "../pages/Login"
+  import Login from "../pages/login"
   
 import PaymentRequest from '../pages/payment_request';
 import ListPayment from 'pages/ListPayment';
-import generalDashboard from 'pages/GeneralDashboard';
+import generalDashboard from 'pages/general_support';
 
 
 function App() {
