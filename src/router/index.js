@@ -3,10 +3,10 @@ import {
     Route,
     Switch
   } from 'react-router-dom'
+
+  import { Component } from 'react';
+  import Login from "../pages/Login"
   import Dashboard from "../pages/Dashboard"
-  import Login from "../pages/login"
-  
-import generalDashboard from 'pages/general_support';
 
 
 function App() {
@@ -16,7 +16,11 @@ function App() {
         <Route exact path="/" component={Dashboard} />    
         <Route  path="/dashboard" component={Login} />
         
-        <Route  path="/general_support" component={generalDashboard} />
+        <Route exact path="/" component={Login} />
+        <Route path="/login" component={Login} />
+        <Route exact path="/" component={Dashboard} />
+        <Route path="/dashboard" component={Dashboard} />
+    
       </Switch>
     </BrowserRouter>
   );
