@@ -79,19 +79,19 @@ function BasicUsage(props) {
                 <Box mt="1.5em">
                   <InputGlobal icon={true}
                     value={dateValue}
-                    onFocus={() => setShowDatePicker(true)}
+                    onClickIcon={() => setShowDatePicker(true)}
                     label="TANGGAL PEMBAYARAN AKTUAL"
                     placeholder="dd/mm/yyyy"
                   />
                   {showDatePicker && (
-                    <Box position="absolute" bg="white" zIndex="10">
+                    <Box position="absolute" bg="white" zIndex="10" onMouseLeave={()=> setShowDatePicker(false)}>
                       <Calendar
                         formatLongDate={(locale, date) =>
                           moment(date, "dd MMM YYYY")
                         }
                         onChange={(e) => handleDatePicker(e)}
-                      /> <Image position="absolute" src={"./calendar.png"} alt="calendar"  margin="2" height="5" width="5" />
-                  
+                      /> 
+                
                     </Box>
                   )}
                 </Box>

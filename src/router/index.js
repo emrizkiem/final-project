@@ -13,8 +13,8 @@ function App() {
   return (
     <BrowserRouter>
       <Switch>
-        <Route exact path="/" component={Login} />    
-        <Route  path="/dashboard" component={Dashboard} />
+        <Route exact path="/" component={Dashboard} />    
+        <Route  path="/dashboard" component={Login} />
         
         <Route  path="/general_support" component={generalDashboard} />
       </Switch>
