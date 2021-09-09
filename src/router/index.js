@@ -1,20 +1,20 @@
 import {
     BrowserRouter,
     Route,
-    Link,
     Switch
   } from 'react-router-dom'
- 
+
   import { Component } from 'react';
   import Login from "../pages/Login"
   import Dashboard from "../pages/Dashboard"
 
-  function App() {
-      return(
-            <BrowserRouter>
 
-       
-        <Switch>
+function App() {
+  return (
+    <BrowserRouter>
+      <Switch>
+        <Route exact path="/" component={Login} />    
+        <Route  path="/dashboard" component={Dashboard} />
         
         <Route exact path="/" component={Login} />
         <Route path="/login" component={Login} />
@@ -22,11 +22,8 @@ import {
         <Route path="/dashboard" component={Dashboard} />
     
       </Switch>
-      
-      </BrowserRouter>
+    </BrowserRouter>
+  );
+}
 
-      )
-
-  }
- 
-  export {App}
+export { App };
