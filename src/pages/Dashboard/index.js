@@ -77,9 +77,6 @@ export default function Dashboard() {
             </Flex>
 
             <Flex bgColor="#E5E5E5" height="600px">
-            <Center>
-                
-            </Center>
                 <Box flex="5">
                     <Box bgColor="white" marginLeft="100px" height="500px">
                         <Stack direction="row" marginLeft="20px" marginTop="20px" marginRight="30px">
