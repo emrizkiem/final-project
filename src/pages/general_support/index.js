@@ -26,37 +26,15 @@ import React from "react";
 import  BasicUsage from "./modalTunggu";
 import  Reject from "./modalReject";
 import  Success from "./modalBerhasil";
+import { Header } from "components";
 
 
 function generalDashboard(){
 
     return(
 <Box maxW="full" borderWidth="1px" borderRadius="lg" overflow="hidden">
-    <ChakraProvider>
-    <Box p="6">
-        <Flex>
-            
-        <Image
-          width="100px"
-          src={process.env.PUBLIC_URL + 'assets/images/logo.png'}
-          alt="Logo"
-          mb="10px"
-          ml="10"
-        />
-            <Spacer />
-            <Tag size="lg" colorScheme="red" borderRadius="full">
-            <Avatar
-                src="https://bit.ly/sage-adebayo"
-                size="md"
-                name="Segun Adebayo"
-                ml={-1}
-                mr={2}
-            />
-            <TagLabel>Pawel Kuna</TagLabel>
-            </Tag>
-
-        </Flex>
-    </Box>
+    <Header/>
+    
     
     <Box p="6">
         <Text fontSize="14px" ml="10">OVERVIEW</Text>
@@ -170,7 +148,6 @@ function generalDashboard(){
         </Grid>
     </Box>  
 
-    </ChakraProvider>
 </Box>
     
        

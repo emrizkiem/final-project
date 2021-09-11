@@ -1,2 +1,3 @@
 import InputGlobal from "./Input";
-export {InputGlobal}
+import Header from "./Header";
+export {InputGlobal, Header}
