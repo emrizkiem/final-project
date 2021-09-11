@@ -1,4 +1,4 @@
-import { 
+import {
     Box,
     Image,
     Logo,
@@ -21,7 +21,7 @@ function Header() {
             <Wrap>
                 <WrapItem alignItems="center" marginRight="50px">
                     <Avatar name="John Doe" src="https://bit.ly/sage-adebayo" marginLeft="30px" marginRight="20px"></Avatar>
-                    <Stack spacing={1} marginLeft="17px" marginRight="150px">
+                    <Stack spacing={0} marginLeft="17px" marginRight="150px">
                         <Text fontSize="lg" fontWeight="500">John Doe</Text>
                         <Text fontSize="sm">Unit Kerja</Text>
                     </Stack>
