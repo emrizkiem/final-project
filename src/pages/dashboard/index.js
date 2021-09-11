@@ -7,6 +7,7 @@ import{
     Tfoot,
     Button,
     ButtonGroup,
+    Divider,
     Tr,
     Th,
     Td,
@@ -63,7 +64,13 @@ export default function ListPayment() {
     }
     
     return(
-        <Box>
+        <Box marginLeft={{
+            sm: "0px",
+            md: "0px",
+            lg: "0px",
+            xl: "0px",
+           
+        }}>
             <Modal isOpen={isOpen} onClose={()=>handleclosemodal()} />
             <Box display="flex" height="100px" alignItems="center">
                 <Image marginLeft="100px" marginTop="10px" width="150px" src={Logo} alt="Logo"/>
@@ -83,16 +90,17 @@ export default function ListPayment() {
             <Flex bgColor="#E5E5E5">
                 <Box marginLeft="100px" marginTop="20px">
                     <Text fontSize="lg">Overview</Text>
-                    <Text fontSize="xl">Dashboard</Text>
+                    <Text fontSize="xl" fontWeight="600">Dashboard</Text>
                 </Box>
             </Flex>
 
             <Flex bgColor="#E5E5E5" height="600px">
                 <Box flex="5">
-                    <Box bgColor="white" marginLeft="100px" height="500px">
+                    <Box bgColor="white" marginLeft="100px" height="510px">
                         <Stack direction="row" marginLeft="20px" marginTop="20px" marginRight="30px">
-                            <Text fontSize="xl" marginTop="25px" marginBottom="20px">Invoice Payment Request</Text>
+                            <Text fontSize="xl" marginTop="25px" marginBottom="20px" fontWeight="600" >Invoice Payment Request</Text>
                             <Spacer/>
+                            
                             <Center>
                                 <Button colorScheme="red" onClick={()=>handleopenmodal()}>
                                     + Create Payment Request
@@ -100,6 +108,7 @@ export default function ListPayment() {
                             </Center>
                             
                         </Stack>
+                        <Divider/>
 
                         <Stack direction="row" marginTop="15px" marginLeft="20px" marginRight="30px" alignItems="center">
                             <Text fontSize="sm">Menampilkan</Text>
@@ -113,8 +122,8 @@ export default function ListPayment() {
                         </Stack>
 
                         <Box marginLeft="20px" marginRight="30px">
-                            <Table variant="simple" marginTop="20px">
-                                <Thead>
+                            <Table variant="simple" marginTop="20px"  borderWidth="1px" borderColor="black">
+                                <Thead  >
                                     <Tr>
                                         <Th>No.</Th>
                                         <Th>Tanggal Request</Th>
@@ -123,26 +132,26 @@ export default function ListPayment() {
                                         <Th>Aksi</Th>
                                     </Tr>
                                 </Thead>
-                                <Tbody>
-                                    <Tr>
+                                <Tbody  borderWidth="1px" borderColor="black">
+                                    <Tr >
                                         <Td>1</Td>
                                         <Td>29 Agustus 2021 - 20:00 WIB</Td>
                                         <Td>30 Agustus 2021</Td>
-                                        <Button colorScheme="yellow">Menunggu Konfirmasi</Button>
+                                        <Button colorScheme="yellow" marginTop="5px" size="sm" >Menunggu Konfirmasi</Button>
                                         <Td>Detail</Td>
                                     </Tr>
-                                    <Tr>
+                                    <Tr  >
                                         <Td>2</Td>
                                         <Td>9 Agustus 2021 - 10:03 WIB</Td>
                                         <Td>10 Agustus 2021</Td>
-                                        <Button colorScheme="green">Disetujui</Button>
+                                        <Button colorScheme="green" size="sm" marginTop="5px" >Disetujui</Button>
                                         <Td>Detail</Td>
                                     </Tr>
-                                    <Tr>
+                                    <Tr  >
                                         <Td>3</Td>
                                         <Td>2 Agustus 2021 - 13:40 WIB</Td>
                                         <Td>3 Agustus 2021</Td>
-                                        <Button colorScheme="red">Rejected by Accounting</Button>
+                                        <Button colorScheme="red" size="sm" marginTop="5px" >Rejected by Accounting</Button>
                                         <Td>Detail</Td>
                                     </Tr>
                                 </Tbody>
@@ -165,9 +174,9 @@ export default function ListPayment() {
                 </Box>
                     
                     
-                <Box flex="3" marginTop="20px" marginBottom="20px">
-                    <SimpleGrid spacing="15px" marginLeft="32px" textAlign="center" marginRight="120px">
-                        <Box bgColor="white">
+                <Box flex="3" marginTop="20px" marginBottom="20px" >
+                    <SimpleGrid spacing="15px" marginLeft="32px" textAlign="center" marginRight="120px" width="302px" >
+                        <Box bgColor="white" height="115px">
                             <Stat>
                                 <StatNumber>43</StatNumber>
                                 <StatLabel>New Payment Request</StatLabel>
@@ -177,7 +186,7 @@ export default function ListPayment() {
                             </Stat>
                         </Box>
 
-                        <Box bgColor="white">
+                        <Box bgColor="white"  height="115px">
                             <Stat>
                                 <StatNumber>93</StatNumber>
                                 <StatLabel>Menunggu Konfirmasi</StatLabel>
@@ -187,7 +196,7 @@ export default function ListPayment() {
                             </Stat>
                         </Box>
 
-                        <Box bgColor="white">
+                        <Box bgColor="white" height="120px">
                             <Stat>
                                 <StatNumber>23</StatNumber>
                                 <StatLabel>Disetujui</StatLabel>
@@ -197,7 +206,7 @@ export default function ListPayment() {
                             </Stat>
                         </Box>
 
-                        <Box bgColor="white">
+                        <Box bgColor="white" height="115px">
                             <Stat>
                                 <StatNumber>73</StatNumber>
                                 <StatLabel>Rejected by Accounting</StatLabel>
