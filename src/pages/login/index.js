@@ -1,22 +1,57 @@
-import React, { useState } from 'react';
-import {
-  Center,
-  Image,
-  Text,
-  Input,
-  FormControl,
-  FormLabel,
-  FormHelperText,
-  Button,
-  Box,
-  InputRightElement,
-  InputGroup,
-} from '@chakra-ui/react';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
+import {
+  Box,
+  Button,
+  Center,
+  FormControl,
+  FormHelperText,
+  FormLabel,
+  Image,
+  Input,
+  InputGroup,
+  InputRightElement,
+  Text,
+  useToast,
+} from '@chakra-ui/react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
+  const [isLoading, setLoading] = useState(false);
+  const [username, setUsername] = useState(null);
+  const [password, setPassword] = useState(null);
+  const [isValidate, setValidate] = useState(true);
+
+  const toast = useToast();
+
+  const login = () => {
+    fetch('https://c01d525f-3a6f-409a-9189-e0c90e0ae2ab.mock.pstmn.io/login', {
+      method: 'POST',
+      body: JSON.stringify({
+        username: username,
+        password: password,
+        login_as: 1,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.status === 200 && data.message === 'berhasil') {
+          window.location.href = '/dashboard';
+        } else {
+          setValidate(false);
+          setLoading(false);
+          toast({
+            title: 'Login failed!',
+            description: 'Please check again your username and password',
+            status: 'error',
+            duration: 4000,
+            isClosable: true,
+          });
+        }
+      });
+  };
+
   return (
     <Center
       maxW="100%"
@@ -30,7 +65,7 @@ export default function Login() {
       <Box maxWidth="400px" width="100%">
         <Image
           width="full"
-          src={process.env.PUBLIC_URL + 'assets/images/logo.png'}
+          src={'/assets/images/logo.png'}
           alt="Logo"
           mb="10px"
         />
@@ -46,53 +81,85 @@ export default function Login() {
           Login
         </Text>
         <Box maxW="600px" w="100%">
-          <FormControl id="email" w="100%" mt="4">
-            <FormLabel textTransform="uppercase" fontWeight="normal">
-              Email/Username
-            </FormLabel>
-            <Input type="email" />
-          </FormControl>
-          <FormControl id="email" w="100%" mt="4">
-            <FormLabel textTransform="uppercase" fontWeight="normal">
-              Password
-            </FormLabel>
-            <InputGroup size="md">
-              <Input type={showPassword ? 'text' : 'password'} />
-              <InputRightElement width="3rem">
-                {showPassword ? (
-                  <ViewIcon onClick={() => setShowPassword(false)} />
-                ) : (
-                  <ViewOffIcon onClick={() => setShowPassword(true)} />
-                )}
-              </InputRightElement>
-              <FormHelperText display="none">Wrong Password</FormHelperText>
-            </InputGroup>
-          </FormControl>
-          <Link to="/forgot_password">
-            <Text
-              fontSize="16px"
-              fontWeight="700"
-              textAlign="right"
-              mt="8px"
-              textTransform="uppercase"
-              color="#E51B23"
-            >
-              Forgot Password?
-            </Text>
-          </Link>
-          <Box w="100%" align="center">
-            <Button
-              olorScheme="blue"
-              size="lg"
-              bg="#E51B23"
-              color="white"
-              mt="10"
-              mb="10"
-              width="100%"
-            >
-              Login
-            </Button>
-          </Box>
+          <form method="post">
+            <FormControl id="email" w="100%" mt="4">
+              <FormLabel textTransform="uppercase" fontWeight="normal">
+                Email/Username
+              </FormLabel>
+              <Input
+                type="email"
+                onChange={(e) => setUsername(e.target.value)}
+                name="username"
+                id="username"
+              />
+            </FormControl>
+            <FormControl id="email" w="100%" mt="4">
+              <FormLabel textTransform="uppercase" fontWeight="normal">
+                Password
+              </FormLabel>
+              <InputGroup size="md">
+                <Input
+                  isInvalid={!isValidate}
+                  errorBorderColor="pink.400"
+                  type={showPassword ? 'text' : 'password'}
+                  onChange={(e) => setPassword(e.target.value)}
+                  name="password"
+                  id="password"
+                />
+                <InputRightElement width="3rem">
+                  {showPassword ? (
+                    <ViewIcon onClick={() => setShowPassword(false)} />
+                  ) : (
+                    <ViewOffIcon onClick={() => setShowPassword(true)} />
+                  )}
+                </InputRightElement>
+                <FormHelperText display="none">Wrong Password</FormHelperText>
+              </InputGroup>
+            </FormControl>
+            <Link to="/forgot_password">
+              <Text
+                fontSize="16px"
+                fontWeight="700"
+                textAlign="right"
+                mt="8px"
+                textTransform="uppercase"
+                color="#E51B23"
+              >
+                Forgot Password?
+              </Text>
+            </Link>
+            <Box w="100%" align="center">
+              <Button
+                isLoading={isLoading}
+                olorScheme="blue"
+                size="lg"
+                bg="#E51B23"
+                color="white"
+                mt="10"
+                mb="10"
+                width="100%"
+                type="submit"
+                onClick={(e) => {
+                  if (username === null && password === null) {
+                    e.preventDefault();
+                    toast({
+                      title: 'Please fill form!',
+                      description:
+                        'Please fill username and password to login!',
+                      status: 'warning',
+                      duration: 4000,
+                      isClosable: true,
+                    });
+                    setLoading(false);
+                  } else {
+                    login();
+                  }
+                }}
+              >
+                Login
+              </Button>
+            </Box>
+          </form>
         </Box>
       </Box>
     </Center>
