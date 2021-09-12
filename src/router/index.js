@@ -1,29 +1,19 @@
-import {
-    BrowserRouter,
-    Route,
-    Link,
-    Switch
-  } from 'react-router-dom'
- 
-  import { Component } from 'react';
-  import Login from "../pages/Login"
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-  function App() {
-      return(
-            <BrowserRouter>
+import Login from '../pages/login';
+import Dashboard from '../pages/dashboard';
+import generalDashboard from '../pages/general_support';
 
-       
-        <Switch>
-        
+function App() {
+  return (
+    <BrowserRouter>
+      <Switch>
         <Route exact path="/" component={Login} />
-        <Route path="/login" component={Login} />
-    
+        <Route exact path="/dashboard" component={Dashboard} />
+        <Route exact path="/general_support" component={generalDashboard} />
       </Switch>
-      
-      </BrowserRouter>
+    </BrowserRouter>
+  );
+}
 
-      )
-
-  }
- 
-  export {App}
+export { App };
