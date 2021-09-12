@@ -37,7 +37,13 @@ export default function Login() {
       .then((response) => response.json())
       .then((data) => {
         if (data.status === 200 && data.message === 'berhasil') {
-          window.location.href = '/dashboard';
+          if (username.substring(username.indexOf('@')) === '@gmail.com') {
+            window.location.href = '/dashboard';
+          } else if (
+            username.substring(username.indexOf('@')) === '@bri.co.id'
+          ) {
+            window.location.href = '/general_support';
+          }
         } else {
           setValidate(false);
           setLoading(false);
@@ -152,6 +158,7 @@ export default function Login() {
                     });
                     setLoading(false);
                   } else {
+                    e.preventDefault();
                     login();
                   }
                 }}
