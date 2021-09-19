@@ -13,7 +13,6 @@ import {
   Text,
   useToast,
 } from '@chakra-ui/react';
-import axios from 'axios';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -27,18 +26,17 @@ export default function Login() {
   const toast = useToast();
 
   const login = () => {
-    setLoading(true);
-
-    axios
-      .post('https://payment-monitoring.herokuapp.com/login', {
+    fetch('https://c01d525f-3a6f-409a-9189-e0c90e0ae2ab.mock.pstmn.io/login', {
+      method: 'POST',
+      body: JSON.stringify({
         username: username,
         password: password,
         login_as: 1,
-      })
-      .then((response) => {
-        console.log(response.data);
-
-        if (response.data.status === 200 && response.statusText === 'OK') {
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.status === 200 && data.message === 'berhasil') {
           if (username.substring(username.indexOf('@')) === '@gmail.com') {
             window.location.href = '/dashboard';
           } else if (
@@ -55,11 +53,9 @@ export default function Login() {
             status: 'error',
             duration: 4000,
             isClosable: true,
+            position: 'top'
           });
         }
-      })
-      .catch((err) => {
-        console.log(err);
       });
   };
 
@@ -73,12 +69,12 @@ export default function Login() {
       pl="10"
       pr="10"
     >
-      <Box maxWidth="400px" width="100%">
+      <Box maxWidth="350px" width="100%">
         <Image
           width="full"
-          src={'/assets/images/logo.png'}
+          src={'/assets/images/logo_vertical.png'}
           alt="Logo"
-          mb="10px"
+          mb="20px"
         />
       </Box>
       <Box
@@ -142,9 +138,9 @@ export default function Login() {
             <Box w="100%" align="center">
               <Button
                 isLoading={isLoading}
-                colorScheme="blue"
+                colorScheme="#4269F2"
+                bg="#4269F2"
                 size="lg"
-                bg="#E51B23"
                 color="white"
                 mt="10"
                 mb="10"
@@ -160,6 +156,7 @@ export default function Login() {
                       status: 'warning',
                       duration: 4000,
                       isClosable: true,
+                      position: 'top'
                     });
                     setLoading(false);
                   } else {

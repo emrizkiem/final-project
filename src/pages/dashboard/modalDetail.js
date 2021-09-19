@@ -128,9 +128,6 @@ function ModalDetails(props) {
             >
               Tutup
             </Button>
-            <Button bg="red" variant="solid" color="white" borderRadius="4px">
-              Update
-            </Button>
           </ModalFooter>
         </ModalContent>
       </Modal>
