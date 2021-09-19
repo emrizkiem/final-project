@@ -1,40 +1,39 @@
 import {
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalBody,
-  ModalCloseButton,
-  ModalFooter,
   Button,
+  Center,
   Divider,
   Input,
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  ModalOverlay,
+  Select,
   Table,
   Tbody,
-  Tr,
   Td,
-  Center,
-  Select,
-} from "@chakra-ui/react";
-import { useState } from "react";
+  Tr,
+} from '@chakra-ui/react';
+import { useState } from 'react';
 
 function ModalWaiting(props) {
   const { onClose, isOpen } = props;
 
-  const [request, setRequest] = useState("");
-  const [reason, setReason] = useState("");
+  const [request, setRequest] = useState('');
+  const [reason, setReason] = useState('');
 
   function onSubmit() {
     let bodyRequest = {
       status_request: request,
-      alasan: reason
-    }
-    console.log(bodyRequest)
+      alasan: reason,
+    };
+    console.log(bodyRequest);
   }
 
   return (
     <>
-
       <Modal isOpen={isOpen} onClose={() => onClose()} size="2xl">
         <ModalOverlay opacity={0.8} />
         <ModalContent borderRadius="0">
@@ -45,7 +44,9 @@ function ModalWaiting(props) {
             <Table variant="simple" borderWidth="1px">
               <Tbody>
                 <Tr bgColor="#C7C7C7">
-                  <Td colSpan={3} ><Center>Detail Payment Request</Center></Td>
+                  <Td colSpan={3}>
+                    <Center>Detail Payment Request</Center>
+                  </Td>
                 </Tr>
 
                 <Tr>
@@ -99,18 +100,28 @@ function ModalWaiting(props) {
                 <Tr>
                   <Td>Status Request</Td>
                   <Td>:</Td>
-                  <Td paddingStart="1px"><Select placeholder="Pilih">
-                    <option value={(approved) => setRequest(approved)}>Teruskan ke Accounting</option>
-                    <option value={(rejected) => setRequest(rejected)}>Reject</option>
-                  </Select></Td>
+                  <Td paddingStart="1px">
+                    <Select placeholder="Pilih">
+                      <option value={(approved) => setRequest(approved)}>
+                        Teruskan ke Accounting
+                      </option>
+                      <option value={(rejected) => setRequest(rejected)}>
+                        Reject
+                      </option>
+                    </Select>
+                  </Td>
                 </Tr>
 
                 <Tr>
                   <Td>Alasan</Td>
                   <Td>:</Td>
-                  <Td paddingStart="1px"><Input placeholder="Masukkan Alasan" onChange={(value) => setReason(value)} /></Td>
+                  <Td paddingStart="1px">
+                    <Input
+                      placeholder="Masukkan Alasan"
+                      onChange={(value) => setReason(value)}
+                    />
+                  </Td>
                 </Tr>
-
               </Tbody>
             </Table>
           </ModalBody>

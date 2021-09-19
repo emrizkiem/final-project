@@ -1,3 +1,3 @@
-import InputGlobal from "./Input";
-import Header from "./Header";
-export {InputGlobal, Header}
+import Header from './Header';
+import InputGlobal from './Input';
+export { InputGlobal, Header };

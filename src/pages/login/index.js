@@ -13,6 +13,7 @@ import {
   Text,
   useToast,
 } from '@chakra-ui/react';
+import axios from 'axios';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -26,17 +27,18 @@ export default function Login() {
   const toast = useToast();
 
   const login = () => {
-    fetch('https://c01d525f-3a6f-409a-9189-e0c90e0ae2ab.mock.pstmn.io/login', {
-      method: 'POST',
-      body: JSON.stringify({
+    setLoading(true);
+
+    axios
+      .post('https://payment-monitoring.herokuapp.com/login', {
         username: username,
         password: password,
         login_as: 1,
-      }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.status === 200 && data.message === 'berhasil') {
+      })
+      .then((response) => {
+        console.log(response.data);
+
+        if (response.data.status === 200 && response.statusText === 'OK') {
           if (username.substring(username.indexOf('@')) === '@gmail.com') {
             window.location.href = '/dashboard';
           } else if (
@@ -55,6 +57,9 @@ export default function Login() {
             isClosable: true,
           });
         }
+      })
+      .catch((err) => {
+        console.log(err);
       });
   };
 
@@ -137,7 +142,7 @@ export default function Login() {
             <Box w="100%" align="center">
               <Button
                 isLoading={isLoading}
-                olorScheme="blue"
+                colorScheme="blue"
                 size="lg"
                 bg="#E51B23"
                 color="white"
