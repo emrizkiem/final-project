@@ -1,48 +1,49 @@
 import {
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalBody,
-  ModalCloseButton,
-  ModalFooter,
+  Box,
   Button,
   Divider,
   Flex,
-  Box,
-  FormControl,
-  FormLabel,
-  Input,
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  ModalOverlay,
   Textarea,
-  Image
-} from "@chakra-ui/react";
-import { useState } from "react";
-import moment from "moment";
-import { InputGlobal } from "components";
-import Calendar from "react-calendar";
+  useToast,
+} from '@chakra-ui/react';
+import axios from 'axios';
+import { InputGlobal } from 'components';
+import moment from 'moment';
+import { useState } from 'react';
+import Calendar from 'react-calendar';
 
 function BasicUsage(props) {
-  const { onClose, isOpen } = props
+  const toast = useToast();
+
+  const { onClose, isOpen } = props;
 
   const [showDatePicker, setShowDatePicker] = useState(false);
   const [dateValue, setDateValue] = useState(null);
-  const [requestBy, setRequestBy] = useState("");
-  const [invoiceTitle, setInvoiceTitle] = useState("");
-  const [price, setPrice] = useState("");
-  const [priceInText, setPriceInText] = useState("");
-  const [receipent, setReceipent] = useState("");
-  const [receipentBank, setReceipentBank] = useState("");
-
+  const [requestBy, setRequestBy] = useState('');
+  const [invoiceTitle, setInvoiceTitle] = useState('');
+  const [price, setPrice] = useState('');
+  const [priceInText, setPriceInText] = useState('');
+  const [receipent, setReceipent] = useState('');
+  const [receipentBank, setReceipentBank] = useState('');
+  const [isValidate, setValidate] = useState(false);
 
   function handleDatePicker(e) {
     const date = new Date(e);
     const formatDate =
-      date.getDate() + "-" + date.getMonth() + "-" + date.getFullYear();
+      date.getDate() + '-' + date.getMonth() + '-' + date.getFullYear();
     setDateValue(formatDate);
     setShowDatePicker(false);
   }
 
-  function onSubmit() { // fungsi untuk POST ke backend nanti 
+  const onSubmit = () => {
+    // fungsi untuk POST ke backend nanti
     let bodyRequest = {
       nama: requestBy,
       tanggal: dateValue,
@@ -50,15 +51,42 @@ function BasicUsage(props) {
       harga: price,
       harga_dalam_teks: priceInText,
       nama_penerima: receipent,
-      bank_penerima: receipentBank
-    }
+      bank_penerima: receipentBank,
+    };
     // lihat di browser console - untuk mengetahui hasil json body request
-    console.log(bodyRequest)
-  }
+    console.log(bodyRequest);
+    axios
+      .post(
+        'https://payment-monitoring.herokuapp.com/payment/create',
+        bodyRequest
+      )
+      .then((response) => {
+        console.log(response.data);
+        if (response.data.status === 200 && response.statusText === 'OK') {
+          toast({
+            title: 'Success updated!',
+            description: 'Success updated data to rejected or approved',
+            status: 'success',
+            duration: 4000,
+            isClosable: true,
+          });
+        } else {
+          toast({
+            title: 'Failed updated!',
+            description: 'Failed updated data to rejected or approved',
+            status: 'error',
+            duration: 4000,
+            isClosable: true,
+          });
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   return (
     <>
-
       <Modal isOpen={isOpen} onClose={() => onClose()} size="2xl">
         <ModalOverlay opacity={0.8} />
         <ModalContent borderRadius="0">
@@ -77,21 +105,26 @@ function BasicUsage(props) {
                   />
                 </Box>
                 <Box mt="1.5em">
-                  <InputGlobal icon={true}
+                  <InputGlobal
+                    icon={true}
                     value={dateValue}
                     onClickIcon={() => setShowDatePicker(true)}
                     label="TANGGAL PEMBAYARAN AKTUAL"
                     placeholder="dd/mm/yyyy"
                   />
                   {showDatePicker && (
-                    <Box position="absolute" bg="white" zIndex="10" onMouseLeave={() => setShowDatePicker(false)}>
+                    <Box
+                      position="absolute"
+                      bg="white"
+                      zIndex="10"
+                      onMouseLeave={() => setShowDatePicker(false)}
+                    >
                       <Calendar
                         formatLongDate={(locale, date) =>
-                          moment(date, "dd MMM YYYY")
+                          moment(date, 'dd MMM YYYY')
                         }
                         onChange={(e) => handleDatePicker(e)}
                       />
-
                     </Box>
                   )}
                 </Box>
@@ -161,7 +194,6 @@ function BasicUsage(props) {
               variant="solid"
               color="white"
               borderRadius="4px"
-
               onClick={() => onSubmit()}
             >
               Submit Payment Request

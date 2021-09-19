@@ -1,29 +1,26 @@
 import {
+  Box,
+  Button,
+  Center,
+  Divider,
   Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
   ModalBody,
   ModalCloseButton,
+  ModalContent,
   ModalFooter,
-  Button,
-  Divider,
-  Input,
+  ModalHeader,
+  ModalOverlay,
   Table,
   Tbody,
-  Tr,
   Td,
-  Center,
-  Box,
-} from "@chakra-ui/react";
-import { useState } from "react";
+  Tr,
+} from '@chakra-ui/react';
 
 function ModalDetails(props) {
   const { onClose, isOpen } = props;
 
   return (
     <>
-
       <Modal isOpen={isOpen} onClose={() => onClose()} size="2xl">
         <ModalOverlay opacity={0.8} />
         <ModalContent borderRadius="0">
@@ -34,7 +31,9 @@ function ModalDetails(props) {
             <Table variant="simple" borderWidth="1px">
               <Tbody>
                 <Tr bgColor="#C7C7C7">
-                  <Td colSpan={3} ><Center>Detail Payment Request</Center></Td>
+                  <Td colSpan={3}>
+                    <Center>Detail Payment Request</Center>
+                  </Td>
                 </Tr>
 
                 <Tr>
@@ -89,14 +88,29 @@ function ModalDetails(props) {
                   <Td>Status Request</Td>
                   <Td>:</Td>
                   <Td paddingStart="1px">
-                    <Box fontSize="13px" justifyContent="left" display="flex" alignItems="left">
-                      <Box justifyContent="center" display="flex" alignItems="center" height="30px" boxSizing="unset" borderRadius="5px" width="160px" borderWidth="1px" px="10px" bgColor="#FDAFBB" >
+                    <Box
+                      fontSize="13px"
+                      justifyContent="left"
+                      display="flex"
+                      alignItems="left"
+                    >
+                      <Box
+                        justifyContent="center"
+                        display="flex"
+                        alignItems="center"
+                        height="30px"
+                        boxSizing="unset"
+                        borderRadius="5px"
+                        width="160px"
+                        borderWidth="1px"
+                        px="10px"
+                        bgColor="#FDAFBB"
+                      >
                         Rejected by Accounting
                       </Box>
                     </Box>
                   </Td>
                 </Tr>
-
               </Tbody>
             </Table>
           </ModalBody>
@@ -114,12 +128,7 @@ function ModalDetails(props) {
             >
               Tutup
             </Button>
-            <Button
-              bg="red"
-              variant="solid"
-              color="white"
-              borderRadius="4px"
-            >
+            <Button bg="red" variant="solid" color="white" borderRadius="4px">
               Update
             </Button>
           </ModalFooter>
