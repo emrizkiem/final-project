@@ -140,7 +140,8 @@ function ModalWaiting(props) {
               Tutup
             </Button>
             <Button
-              bg="red"
+              bg="#4269F2"
+              colorScheme="#4269F2"
               variant="solid"
               color="white"
               borderRadius="4px"

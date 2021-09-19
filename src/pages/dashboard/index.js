@@ -116,7 +116,7 @@ export default function ListPayment() {
                 <Spacer />
 
                 <Center>
-                  <Button colorScheme="red" onClick={() => handleopenmodal()}>
+                  <Button bgColor="#4269F2" colorScheme="#4269F2" color="white" onClick={() => handleopenmodal()}>
                     + Create Payment Request
                   </Button>
                 </Center>
@@ -212,11 +212,11 @@ export default function ListPayment() {
                                   height="30px"
                                   boxSizing="unset"
                                   borderRadius="5px"
-                                  color="white"
+                                  color="black"
                                   borderWidth="1px"
                                   px="10px"
                                   bgColor={
-                                    payment.status === 1 ? 'red' : 'green'
+                                    payment.status === 1 ? '#7DDFC3' : '#FDAFBB'
                                   }
                                 >
                                   {payment.status === 1

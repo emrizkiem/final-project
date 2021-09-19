@@ -69,6 +69,7 @@ function BasicUsage(props) {
             status: 'success',
             duration: 4000,
             isClosable: true,
+            position: 'top'
           });
         } else {
           toast({
@@ -77,6 +78,7 @@ function BasicUsage(props) {
             status: 'error',
             duration: 4000,
             isClosable: true,
+            position: 'top'
           });
         }
       })
@@ -190,7 +192,8 @@ function BasicUsage(props) {
               Tutup
             </Button>
             <Button
-              bg="brand.red"
+              bgColor="#4269F2"
+              colorScheme="#4269F2"
               variant="solid"
               color="white"
               borderRadius="4px"
